@@ -9,20 +9,32 @@ OSFlow_Directory = Setups_Directory / 'osflow'
 NEORV32_Directory = Setups_Directory / 'neorv32'
 NEORV32_RTLCoreDirectory = NEORV32_Directory / 'rtl/core'
 
-Fileset_NEORV32_Package = FileSet('NEORV32:Package')
-Fileset_NEORV32_Package.AddFile(VHDLSourceFile(NEORV32_RTLCoreDirectory/'neorv32_package.vhd'))
+Fileset_NEORV32_Package = FileSet(
+    'NEORV32:Package',
+    directory=NEORV32_RTLCoreDirectory
+)
+Fileset_NEORV32_Package.AddFile(VHDLSourceFile('neorv32_package.vhd'))
 
-Fileset_NEORV32_ApplicationImage = FileSet('NEORV32:ApplicationImage')
-Fileset_NEORV32_ApplicationImage.AddFile(VHDLSourceFile(NEORV32_RTLCoreDirectory/'neorv32_application_image.vhd'))
+Fileset_NEORV32_ApplicationImage = FileSet(
+    'NEORV32:ApplicationImage',
+    directory=NEORV32_RTLCoreDirectory
+)
+Fileset_NEORV32_ApplicationImage.AddFile(VHDLSourceFile('neorv32_application_image.vhd'))
 
-Fileset_NEORV32_MemoryEntities = FileSet('NEORV32:MemoryEntities')
+Fileset_NEORV32_MemoryEntities = FileSet(
+    'NEORV32:MemoryEntities',
+    directory=NEORV32_RTLCoreDirectory
+)
 for vhdlFile in [
     'neorv32_dmem.entity.vhd',
     'neorv32_imem.entity.vhd'
 ]:
-    Fileset_NEORV32_ApplicationImage.AddFile(VHDLSourceFile(NEORV32_RTLCoreDirectory/vhdlFile))
+    Fileset_NEORV32_ApplicationImage.AddFile(VHDLSourceFile(vhdlFile))
 
-Fileset_NEORV32_CoreSources = FileSet('NEORV32:CoreSources')
+Fileset_NEORV32_CoreSources = FileSet(
+    'NEORV32:CoreSources',
+    directory=NEORV32_RTLCoreDirectory
+)
 for vhdlFile in [
     'neorv32_bootloader_image.vhd',
     'neorv32_boot_rom.vhd',
@@ -59,10 +71,31 @@ for vhdlFile in [
     'neorv32_wishbone.vhd',
     'neorv32_xirq.vhd',
 ]:
-    Fileset_NEORV32_CoreSources.AddFile(VHDLSourceFile(NEORV32_RTLCoreDirectory/vhdlFile))
+    Fileset_NEORV32_CoreSources.AddFile(VHDLSourceFile(vhdlFile))
 
-Fileset_NEORV32_ICE40 = FileSet('ICE40:Components')
-Fileset_NEORV32_ICE40.AddFile(VHDLSourceFile(OSFlow_Directory/'devices/ice40/sb_ice40_components.vhd'))
+Fileset_NEORV32_ICE40 = FileSet(
+    'ICE40:Components',
+    directory=OSFlow_Directory/'devices/ice40'
+)
+Fileset_NEORV32_ICE40.AddFile(VHDLSourceFile('sb_ice40_components.vhd'))
 
-Fileset_NEORV32_ECP5 = FileSet('ECP5:Components')
-Fileset_NEORV32_ECP5.AddFile(VHDLSourceFile(OSFlow_Directory/'devices/ecp5/ecp5_components.vhd'))
+Fileset_NEORV32_ECP5 = FileSet(
+    'ECP5:Components',
+    directory=OSFlow_Directory/'devices/ecp5'
+)
+Fileset_NEORV32_ECP5.AddFile(VHDLSourceFile('ecp5_components.vhd'))
+
+#neorv32_Fomu_BoardTop_Minimal.vhd
+#neorv32_Fomu_BoardTop_UP5KDemo.vhd
+#neorv32_iCEBreaker_BoardTop_UP5KDemo.vhd
+#neorv32_IceZumAlhambraII_BoardTop_MinimalBoot.vhd
+#neorv32_UPDuino-v3.0_BoardTop_MinimalBoot.vhd
+#neorv32_Fomu_BoardTop_MinimalBoot.vhd
+#neorv32_Fomu_MixedLanguage_ClkGen.v
+#neorv32_iCESugar-v1.5_BoardTop_Minimal.vhd
+#neorv32_OrangeCrab_BoardTop_MinimalBoot.vhd
+#neorv32_UPDuino-v3.0_BoardTop_UP5KDemo.vhd
+#neorv32_Fomu_BoardTop_MixedLanguage.vhd
+#neorv32_iCEBreaker_BoardTop_MinimalBoot.vhd
+#neorv32_iCESugar-v1.5_BoardTop_MinimalBoot.vhd
+#neorv32_ULX3S_BoardTop_MinimalBoot.vhd
